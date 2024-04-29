@@ -4,7 +4,6 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 
 import { UserService } from 'src/user/user.service';
 import { iuserfromjwt } from '../models/userFromJwt';
-import { ipayLoad } from '../models/payload';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -16,7 +15,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(payload: ipayLoad): Promise<iuserfromjwt> {
+  async validate(payload: any): Promise<iuserfromjwt> {
     return {
       id: payload.sub,
       email: payload.email,
