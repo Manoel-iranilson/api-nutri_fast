@@ -1,4 +1,4 @@
-export interface ipayload {
+export interface ipayLoad {
   sub: number;
   email: string;
   iat?: number;
