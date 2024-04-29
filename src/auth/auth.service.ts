@@ -2,8 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
 import * as bcrypt from 'bcrypt';
 import { User } from 'src/user/entities/user.entity';
-import { IPayload } from './models/payload';
+
 import { JwtService } from '@nestjs/jwt';
+import { ipayload } from './models/payload';
 
 @Injectable()
 export class AuthService {
@@ -23,7 +24,7 @@ export class AuthService {
     throw new Error('Email or password provided is incorrect');
   }
   login(user: User) {
-    const payload: IPayload = {
+    const payload: ipayload = {
       sub: user.id,
       email: user.email,
     };
