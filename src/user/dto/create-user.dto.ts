@@ -1,6 +1,7 @@
 import { User } from '../entities/user.entity';
 import {
   IsEmail,
+  IsOptional,
   IsString,
   Matches,
   MaxLength,
@@ -18,4 +19,18 @@ export class CreateUserDto extends User {
     message: 'password too weak',
   })
   password: string;
+
+  @IsOptional()
+  userType: 'PATIENT' | 'PROFESSIONAL';
+
+  @IsOptional()
+  name?: string;
+  @IsOptional()
+  age?: number;
+  @IsOptional()
+  height?: number;
+  @IsOptional()
+  weight?: number;
+  @IsOptional()
+  specialty?: string;
 }

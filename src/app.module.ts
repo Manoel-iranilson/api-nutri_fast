@@ -6,9 +6,11 @@ import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { APP_GUARD } from '@nestjs/core';
 import { FoodModule } from './food/food.module';
+import { ChatGateway } from './chat/chat.gateway';
+import { ProfessionalModule } from './professional/professional.module';
 
 @Module({
-  imports: [UserModule, AuthModule, FoodModule],
+  imports: [UserModule, AuthModule, FoodModule, ProfessionalModule],
   controllers: [AppController],
   providers: [
     AppService,
@@ -16,6 +18,7 @@ import { FoodModule } from './food/food.module';
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
     },
+    ChatGateway,
   ],
 })
 export class AppModule {}
