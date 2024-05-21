@@ -7,9 +7,18 @@ import { CreateFoodDto } from './dto/create-food.dto';
 export class FoodService {
   constructor(private prisma: PrismaService) {}
 
-  // async addFood(id: string) {
-  //   return this.prisma.user.update({});
-  // }
+  async addFood(userId: string, foodId: string) {
+    await this.prisma.user.update({
+      where: { id: userId },
+      data: {
+        foods: {
+          connect: { id: foodId },
+        },
+      },
+    });
+
+    return 'comida adicionada';
+  }
 
   async createFood(createFoodDto: CreateFoodDto) {
     return this.prisma.food.create({
