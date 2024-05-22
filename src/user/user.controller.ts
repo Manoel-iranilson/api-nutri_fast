@@ -30,6 +30,11 @@ export class UserController {
     return this.userService.updateUser(user.id, updateUserDto);
   }
 
+  @Get()
+  getUser(@CurrentUser() user: User) {
+    return this.userService.getUser(user.id);
+  }
+
   @Get(':id')
   findByEmail(@Body() data: { email: string }) {
     return this.userService.findByEmail(data.email);

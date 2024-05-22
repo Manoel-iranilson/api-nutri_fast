@@ -47,6 +47,14 @@ export class UserService {
     return { ...updateUser, password: undefined };
   }
 
+  async getUser(id: string) {
+    const user = this.prisma.user.findFirst({
+      where: { id },
+      include: { foods: true, patients: true },
+    });
+    return user;
+  }
+
   async findByEmail(email: string) {
     const user = this.prisma.user.findUnique({ where: { email } });
     return user;
